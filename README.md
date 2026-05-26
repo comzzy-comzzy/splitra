@@ -30,6 +30,7 @@ splitra/
     route-revenue.mjs            # Dry-run or execute payouts
     generate-proof-report.mjs    # Export proof report JSON
     validate-config.mjs          # Validate split config
+    uninstall-local.mjs          # Remove a local Splitra checkout
   assets/
     networks.json                # Pharos network config
     example-splits.json          # Example 40/30/20/10 split
@@ -52,6 +53,26 @@ git clone https://github.com/comzzy-comzzy/splitra.git
 cd splitra
 npm install
 ```
+
+## Uninstall From A Device
+
+If Splitra was installed with the commands above, remove the local checkout from
+that device by running the uninstall script from the parent directory:
+
+```bash
+cd ..
+node splitra/scripts/uninstall-local.mjs splitra --yes
+```
+
+You can also remove a specific checkout path from anywhere:
+
+```bash
+node /path/to/splitra/scripts/uninstall-local.mjs /path/to/splitra --yes
+```
+
+The uninstall command only removes the local Splitra project folder. It does not
+touch deployed vault contracts, onchain funds, wallets, private keys, or any
+other directories.
 
 ## Choose A Network
 
