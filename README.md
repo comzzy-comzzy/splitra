@@ -70,6 +70,13 @@ You can also remove a specific checkout path from anywhere:
 node /path/to/splitra/scripts/uninstall-local.mjs /path/to/splitra --yes
 ```
 
+If your checkout does not have `scripts/uninstall-local.mjs` yet, use this
+fallback from the directory that contains `splitra`:
+
+```bash
+node -e 'const fs=require("node:fs");const pkg=JSON.parse(fs.readFileSync("splitra/package.json","utf8"));if(pkg.name!=="splitra")throw new Error("Refusing to remove: splitra/package.json is not the Splitra package.");' && rm -rf splitra
+```
+
 The uninstall command only removes the local Splitra project folder. It does not
 touch deployed vault contracts, onchain funds, wallets, private keys, or any
 other directories.
