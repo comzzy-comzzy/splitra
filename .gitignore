@@ -1,0 +1,7 @@
+node_modules/
+build/
+.env
+.env.*
+*.log
+proof-report*.json
+splitra-proof-report*.json
