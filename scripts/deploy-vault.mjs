@@ -5,6 +5,7 @@ import {
   loadNetwork,
   parseArgs,
   publicClient,
+  validateAddress,
   waitForReceipt,
   walletClient
 } from "./lib.mjs";
@@ -19,7 +20,7 @@ try {
   if (!args["dry-run"] || process.env.PRIVATE_KEY) {
     ({ account, client } = walletClient(network));
   }
-  const owner = args.owner || account?.address || "PRIVATE_KEY_SIGNER";
+  const owner = args.owner ? validateAddress(args.owner, "Owner") : account?.address || "PRIVATE_KEY_SIGNER";
 
   console.log(JSON.stringify({
     network: network.name,

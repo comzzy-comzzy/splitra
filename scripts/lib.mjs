@@ -66,7 +66,7 @@ export function writeJson(filePath, value) {
   fs.writeFileSync(filePath, `${JSON.stringify(value, bigintReplacer, 2)}\n`);
 }
 
-export function loadNetwork(name = "atlantic-testnet") {
+export function loadNetwork(name) {
   const configPath = new URL("../assets/networks.json", import.meta.url);
   const config = readJson(configPath);
   const networkName = name || config.defaultNetwork;
@@ -123,7 +123,14 @@ export function walletClient(network) {
 }
 
 export function normalizePrivateKey(privateKey) {
-  return privateKey.startsWith("0x") ? privateKey : `0x${privateKey}`;
+  const trimmed = String(privateKey || "").trim();
+  const normalized = trimmed.startsWith("0x") ? trimmed : `0x${trimmed}`;
+  if (!/^0x[0-9a-fA-F]{64}$/.test(normalized)) {
+    throw new Error(
+      "PRIVATE_KEY must be a 32-byte hex private key: 64 hex characters, optionally prefixed with 0x. Do not use your public wallet address or seed phrase."
+    );
+  }
+  return normalized;
 }
 
 export function normalizeToken(token) {

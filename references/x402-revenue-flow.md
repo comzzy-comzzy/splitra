@@ -30,6 +30,7 @@ Distinct Splitra behavior:
 ## Suggested Demo Prompt
 
 ```text
-Verify this x402 payment transaction on Pharos Atlantic, route 1 USDC from the
-Splitra vault using the configured 40/30/20/10 split, and generate a proof report.
+Verify this x402 payment transaction on Pharos mainnet or Atlantic testnet,
+route 1 USDC from the Splitra vault using the configured 40/30/20/10 split, and
+generate a proof report.
 ```

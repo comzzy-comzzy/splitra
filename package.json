@@ -5,7 +5,12 @@
   "type": "module",
   "description": "Pharos Agent Center skill for verified autonomous revenue routing.",
   "scripts": {
-    "check": "node scripts/validate-config.mjs --config assets/example-splits.json && node scripts/route-revenue.mjs --network atlantic-testnet --vault 0x5555555555555555555555555555555555555555 --token native --amount 1000000 --config assets/example-splits.json --dry-run",
+    "check": "npm run check:mainnet && npm run check:testnet",
+    "check:mainnet": "node scripts/validate-config.mjs --config assets/example-splits.json && node scripts/route-revenue.mjs --network mainnet --vault 0x5555555555555555555555555555555555555555 --token native --amount 1000000 --config assets/example-splits.json --dry-run",
+    "check:testnet": "node scripts/validate-config.mjs --config assets/example-splits.json && node scripts/route-revenue.mjs --network atlantic-testnet --vault 0x5555555555555555555555555555555555555555 --token native --amount 1000000 --config assets/example-splits.json --dry-run",
+    "check:wallet": "npm run check:wallet:mainnet",
+    "check:wallet:mainnet": "node scripts/check-wallet.mjs --network mainnet",
+    "check:wallet:testnet": "node scripts/check-wallet.mjs --network atlantic-testnet",
     "compile": "npx solcjs --bin --abi contracts/SplitraVault.sol -o build"
   },
   "dependencies": {

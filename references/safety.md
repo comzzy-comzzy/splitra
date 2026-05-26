@@ -4,7 +4,9 @@ Splitra routes money. Treat every write operation as sensitive.
 
 ## Required Checks
 
-- Use Pharos Atlantic testnet unless the user explicitly requests another supported network.
+- Support both Pharos mainnet and Pharos Atlantic testnet.
+- Pass `--network mainnet` or `--network atlantic-testnet` explicitly.
+- When the prompt is ambiguous, ask or infer the target network before writes.
 - Never print or request private keys in chat. Use `PRIVATE_KEY` in the shell environment.
 - Run `route-revenue.mjs --dry-run` before sending a route transaction.
 - Confirm the signer is the `SplitraVault` owner before configuring or routing.
@@ -13,11 +15,14 @@ Splitra routes money. Treat every write operation as sensitive.
 - Reject split configs whose shares do not total exactly 10000 basis points.
 - Do not route to arbitrary addresses from a prompt. Recipients must come from the config.
 
-## Mainnet Rule
+## Network Rules
 
-Mainnet is supported by config but should not be used for campaign demos. If a
-user asks for mainnet, explicitly state the network, chain ID, signer address,
-vault address, token, and payout plan before any write.
+Before any write, explicitly state the network, chain ID, signer address, vault
+address, token, and payout plan.
+
+- Mainnet uses real funds. Require an explicit dry-run and confirmation before
+  sending a transaction.
+- Atlantic testnet is appropriate for demos, testing, and campaign review.
 
 ## Private Key Handling
 
@@ -37,8 +42,9 @@ Not allowed:
 
 For campaign review, prefer:
 
-- Atlantic testnet
-- low-value test tokens
+- Atlantic testnet routes when a live transaction is needed
+- mainnet dry-runs when reviewers ask for production readiness
+- low-value routes on the selected network
 - `--dry-run` screenshots
-- a small payout route
+- a small payout route only after confirmation
 - generated proof report
