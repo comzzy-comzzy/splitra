@@ -1,0 +1,3 @@
+display_name: Splitra
+short_description: Route verified Pharos agent revenue into auditable payout splits.
+default_prompt: Route verified onchain revenue through Splitra on Pharos Atlantic testnet and generate a proof report.
