@@ -1,0 +1,17 @@
+{
+  "name": "splitra",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pharos Agent Center skill for verified autonomous revenue routing.",
+  "scripts": {
+    "check": "node scripts/validate-config.mjs --config assets/example-splits.json && node scripts/route-revenue.mjs --network atlantic-testnet --vault 0x5555555555555555555555555555555555555555 --token native --amount 1000000 --config assets/example-splits.json --dry-run",
+    "compile": "npx solcjs --bin --abi contracts/SplitraVault.sol -o build"
+  },
+  "dependencies": {
+    "viem": "^2.31.0"
+  },
+  "devDependencies": {
+    "solc": "^0.8.30"
+  }
+}
