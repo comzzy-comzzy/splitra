@@ -11,7 +11,8 @@
     "check:wallet": "npm run check:wallet:mainnet",
     "check:wallet:mainnet": "node scripts/check-wallet.mjs --network mainnet",
     "check:wallet:testnet": "node scripts/check-wallet.mjs --network atlantic-testnet",
-    "compile": "npx solcjs --bin --abi contracts/SplitraVault.sol -o build"
+    "compile": "npx solcjs --bin --abi contracts/SplitraVault.sol -o build",
+    "package": "python3 scripts/package-skill.py"
   },
   "dependencies": {
     "viem": "^2.31.0"
